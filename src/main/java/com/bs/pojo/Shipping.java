@@ -20,7 +20,7 @@ public class Shipping {
     private String receiverDistrict;
 
     private String receiverAddress;
-
+    //邮编
     private String receiverZip;
 
     private Date createTime;
