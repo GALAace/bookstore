@@ -1,4 +1,4 @@
-package com.bs.tetr;
+package com.bs.test;
 
 import org.junit.Test;
 
