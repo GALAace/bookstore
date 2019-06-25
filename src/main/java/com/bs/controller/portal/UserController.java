@@ -43,6 +43,8 @@ public class UserController {
         ServerResponse<User> response = iUserService.login(username,password);
         if(response.isSuccess()){
             //session.setAttribute(Const.CURRENT_USER,response.getData());
+
+
             CookieUtil.writeLoginToken(resp,session.getId());
             CookieUtil.readLoginToken(request);
             CookieUtil.delLoginToken(resp,request);
