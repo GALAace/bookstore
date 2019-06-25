@@ -3,6 +3,7 @@ package com.bs.common;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,9 +14,8 @@ import java.util.concurrent.TimeUnit;
  * @Auther: 杨博文
  * @Date: 2019/5/13 02:16
  */
+@Slf4j
 public class TokenCache {
-    private static Logger logger = LoggerFactory.getLogger(TokenCache.class);
-
     public static final String TOKEN_PREFIX = "token_";
     //LRU算法
     //initialCapacity--初始化容量，maximumSize--最大容量，expireAfterAccess--有效期
@@ -41,7 +41,7 @@ public class TokenCache {
             }
             return value;
         }catch (Exception e){
-            logger.error("localCache get error",e);
+            log.error("localCache get error",e);
         }
         return null;
 

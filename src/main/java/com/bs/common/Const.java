@@ -16,6 +16,10 @@ public class Const {
     public static final String EMAIL = "email";
     public static final String USERNAME = "username";
 
+    public interface RedisCacheExtime{
+        int REDIS_SESSION_EXTIME = 60 * 30;//30min
+    }
+
     //支付类型
     public enum PaymentTypeEnum {
         ONLINE_PAY(1,"在线支付");
