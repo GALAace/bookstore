@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 public class CookieUtil {
 
-    private final static String COOKIE_DOMAIN = ".galaace.com";
+    private final static String COOKIE_DOMAIN = "gala.com";
     private final static String COOKIE_NAME = "bs_login_token";
 
 
@@ -29,9 +29,11 @@ public class CookieUtil {
         Cookie cookie = new Cookie(COOKIE_NAME,token);
         cookie.setDomain(COOKIE_DOMAIN);
         cookie.setPath("/");
+        //无法通过脚本获取cookie信息
+        cookie.setHttpOnly(true);
         //单位：s,-1为永久有效。如果不设置MaxAge，cookie就不会写入硬盘，而是写在内存。只在当前页面有效
         cookie.setMaxAge(60*60*24*365);
-        log.info("write cookirName:{},cookirValue:{}",cookie.getName(),cookie.getValue());
+        log.info("write cookieName:{},cookieValue:{}",cookie.getName(),cookie.getValue());
         response.addCookie(cookie);
 
     }
@@ -44,9 +46,9 @@ public class CookieUtil {
         Cookie[] cookies = request.getCookies();
         if(cookies != null){
             for(Cookie cookie : cookies){
-                log.info("read cookieNmae:{},cookieValue:{}",cookie.getName(),cookie.getValue());
+                log.info("read cookieName:{},cookieValue:{}",cookie.getName(),cookie.getValue());
                 if(StringUtils.equals(cookie.getName(),COOKIE_NAME)){
-                    log.info("return cookieNmae:{},cookieValue:{}",cookie.getName(),cookie.getValue());
+                    log.info("return cookieName:{},cookieValue:{}",cookie.getName(),cookie.getValue());
                     return cookie.getValue();
                 }
             }
@@ -68,7 +70,7 @@ public class CookieUtil {
                     cookie.setPath("/");
                     //0等于删除次cookie
                     cookie.setMaxAge(0);
-                    log.info("del cookirName:{},cookirValue:{}",cookie.getName(),cookie.getValue());
+                    log.info("del cookieName:{},cookieValue:{}",cookie.getName(),cookie.getValue());
                     response.addCookie(cookie);
                     return;
                 }
